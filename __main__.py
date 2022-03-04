@@ -2,7 +2,12 @@
 under 'get_cases_7day_rolling_avg' and 'test_data_freshness' for more detailed instructions.
 """
 
+import pandas as pd
+ 
+from datetime import date, timedelta
+
 import database_loader
+
 
 
 def main():
@@ -21,8 +26,16 @@ def get_cases_7day_rolling_avg(db_connection):
     Parameters:
     - db_connection: a sqlite database connection
     """
+    query = """
+    select *,
+            avg(cases) over(PARTITION by state ORDER BY state, date 
+            ROWS BETWEEN 6 PRECEDING and CURRENT ROW) as trailing_avg
+        from (select state, date, cases
+            from covid_cases
+           GROUP BY state, date); """
 
-    raise NotImplementedError("Delete this line once you've implemented a solution")
+    df = pd.read_sql_query(query, db_connection)
+    import ipdb; ipdb.set_trace()
 
 
 def test_data_freshness(db_connection):
@@ -33,8 +46,11 @@ def test_data_freshness(db_connection):
     Parameters:
     - db_connection: a sqlite database connection
     """
-
+    today = datetime.date.today()
+    yesterday = today - timedelta(days = 1)
     raise NotImplementedError("Delete this line once you've implemented a solution")
+
+
 
 
 if __name__ == "__main__":
