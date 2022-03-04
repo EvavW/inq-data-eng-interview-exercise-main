@@ -33,6 +33,7 @@ def get_cases_7day_rolling_avg(db_connection):
     query = _load_query(TRAILING_AVG_QUERY)
 
     # execute query, return result
+    # use pandas to get a dataframe of the table that prints nicely
     result = pd.read_sql_query(query, db_connection)
 
     return result
@@ -58,7 +59,6 @@ def test_data_freshness(db_connection):
     query = _load_query(CHECK_DATE_QUERY, date=(yesterday))
 
     # execute query, test result
-    # use pandas to get a dataframe of the table that prints nicely
     result = pd.read_sql_query(query, db_connection)
 
     if result.iloc[0, 0] == 0:
