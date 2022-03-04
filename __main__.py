@@ -8,6 +8,7 @@ from datetime import date, timedelta
 from exc import FreshnessError
 import database_loader
 
+# constants for loading queries
 SQL_DIR = "queries"
 TRAILING_AVG_QUERY = "trailing_average.sql"
 CHECK_DATE_QUERY = "check_date_exists.sql"
