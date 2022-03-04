@@ -1,6 +1,6 @@
 # Setup
 The Pandas library has been added as a dependency to this project to allow for easier debugging of query results
-as well as for a new printed version of the database table.
+as well as for a nice printed version of the database table.
 Follow the below instructions to set up a virtual enviroment and install dependecies
 
 1. Clone this repo to get started:
