@@ -22,8 +22,8 @@ def main():
 
 
 def get_cases_7day_rolling_avg(db_connection):
-    """Write a query that returns, the average number of new cases reported 
-       over the previous seven days of data for each day and state. In other 
+    """Write a query that returns, the average number of new cases reported
+       over the previous seven days of data for each day and state. In other
        words, the seven-day trailing average.
 
     Parameters:
@@ -34,7 +34,7 @@ def get_cases_7day_rolling_avg(db_connection):
 
     # execute query, return result
     result = pd.read_sql_query(query, db_connection)
-    
+
     return result
 
 
@@ -51,21 +51,21 @@ def test_data_freshness(db_connection):
 
     # get yesterday's date as string formatted like YYYY-MM-DD
     today = date.today()
-    yesterday = today - timedelta(days = 1)
+    yesterday = today - timedelta(days=1)
     yesterday = str(yesterday)
 
     # create query with yesterday's date as an argument
-    query = _load_query(CHECK_DATE_QUERY, date=(yesterday+"TEST"))
-    import ipdb; ipdb.set_trace()
+    query = _load_query(CHECK_DATE_QUERY, date=(yesterday))
 
     # execute query, test result
-    result =  pd.read_sql_query(query, db_connection)
+    # use pandas to get a dataframe of the table that prints nicely
+    result = pd.read_sql_query(query, db_connection)
 
-    if not assert result.iloc[0, 0] > 0 
-    try:
-        assert result.iloc[0, 0] > 0
-    except:
-        FreshnessError(f"covid_cases does not contain rows from yesterday ({yesterday})")
+    if result.iloc[0, 0] == 0:
+        raise FreshnessError(
+            f"covid_cases does not contain rows from yesterday ({yesterday})"
+        )
+
 
 def _load_query(file_str, **kwargs):
     """
@@ -76,11 +76,10 @@ def _load_query(file_str, **kwargs):
     - kwargs: any variables needed for string formatting
 
     """
-    with open("/".join([SQL_DIR,file_str]), "r") as sql_file:
+    with open("/".join([SQL_DIR, file_str]), "r") as sql_file:
         query = sql_file.read().format(**kwargs)
 
     return query
-
 
 
 if __name__ == "__main__":

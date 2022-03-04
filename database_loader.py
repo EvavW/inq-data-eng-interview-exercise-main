@@ -66,11 +66,19 @@ def load_table(cxn):
         state = columns[2]
         cases = columns[3]
         deaths = columns[6]
-        to_db.append((date, state, cases, deaths,))
-    
+        to_db.append(
+            (
+                date,
+                state,
+                cases,
+                deaths,
+            )
+        )
+
     curs = cxn.cursor()
     curs.executemany(
-        f"INSERT INTO {TABLE_NAME} (date, state, cases, deaths) VALUES (?, ?, ?, ?);", to_db
+        f"INSERT INTO {TABLE_NAME} (date, state, cases, deaths) VALUES (?, ?, ?, ?);",
+        to_db,
     )
 
 
