@@ -1,4 +1,4 @@
-## Setup
+# Setup
 The Pandas library has been added as a dependency to this project to allow for easier debugging of query results
 as well as for a new printed version of the database table.
 Follow the below instructions to set up a virtual enviroment and install dependecies
@@ -26,6 +26,17 @@ Follow the below instructions to set up a virtual enviroment and install depende
     ```shell
     pip install -r requirements.txt
     ```
+
+## Additional Files
+Some additional files have been added to this repo:
+###  `.gitignore`
+Contains a list of files that will be produced when setting up the virutal environment and running code but which will not be tracked in git.
+
+### `exc.py`
+Contains a custom exception used in `__main__.py` when the `covid_cases` table is not fresh.
+
+### `queries/`
+A new directory that contains two SQL files with queries that are loaded in `__main__.py`.
 
 # Inquirer Data Engineering Candidate Exercise
 In this exercise, you'll edit the `__main__.py` file to write some queries and tests against a database with historical COVID-19 case data. 
