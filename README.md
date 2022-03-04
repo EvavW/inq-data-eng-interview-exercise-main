@@ -3,22 +3,29 @@ The Pandas library has been added as a dependency to this project to allow for e
 as well as for a new printed version of the database table.
 Follow the below instructions to set up a virtual enviroment and install dependecies
 
-1. Create a virtual environment at the top level of the project. Make sure your version of Python is updated to at least version 3.6. This directory will not be tracked in git, see the `.gitignore` file to change this:
-   .. code-block:: bash
+1. Clone this repo to get started:
 
-      python -m venv ./
+   ```shell
+   git clone git@github.com:EvavW/inq-data-eng-interview-exercise-main.git
+   ```
+   
+3. Create a virtual environment at the top level of the project. Make sure your version of Python is updated to at least version 3.6. This directory will not be tracked in git, see the `.gitignore` file to change this:
+
+    ```shell
+    python -m venv ./
+    ```
 
 2. Activate the virtual environment:
- .. code-block:: bash
 
-      source ./venv/bin/activate
+    ```shell
+    source ./venv/bin/activate
+    ```
 
 3. Install dependencies:
- .. code-block:: bash
 
+    ```shell
     pip install -r requirements.txt
-
-
+    ```
 
 # Inquirer Data Engineering Candidate Exercise
 In this exercise, you'll edit the `__main__.py` file to write some queries and tests against a database with historical COVID-19 case data. 
