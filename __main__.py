@@ -35,6 +35,7 @@ def get_cases_7day_rolling_avg(db_connection):
 
     # execute query, return result
     # use pandas to get a dataframe of the table that prints nicely
+    import ipdb; ipdb.set_trace()
     result = pd.read_sql_query(query, db_connection)
 
     return result
